@@ -1,14 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {getGoals,postGoals,putGoals,deleteGoals} = require('../controllers/goalController');
+const {getGoals,setGoal,updateGoal,deleteGoal} = require('../controllers/goalController');
 
 //https://expressjs.com/en/guide/writing-middleware.html
-router.get('/',getGoals);
-
-router.post('/',postGoals);
-
-router.put('/:id',putGoals);
-
-router.delete('/:id',deleteGoals);
+router.route('/').get(getGoals).post(setGoal); 
+router.route('/:id').put(updateGoal).delete(deleteGoal);
 
 module.exports = router;
