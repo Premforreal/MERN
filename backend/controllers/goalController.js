@@ -10,7 +10,6 @@ const getGoals = asyncHandler( async (req,res)=>{
     const goals = await Goal.find()
     res.status(200).json(goals);
 });
-
 //@desc   gets all goals but aft6er auth it gets specific user goals
 //@route  POST/api/goals
 //@access Private
