@@ -1,13 +1,16 @@
 const express = require('express');
 const dotenv  = require('dotenv').config();
-const {errorHandler} = require('./middleware/errorMiddleware');
-const port    = process.env.PORT || 5000
 //https://stackoverflow.com/questions/59428844/listen-eacces-permission-denied-in-windows
 //PORT=5000; gives error. Don't use semicolon.
+const port    = process.env.PORT || 5000
+const colors = require('colors');
+const {errorHandler} = require('./middleware/errorMiddleware');
+const connectDB = require('./config/db');
+
+connectDB();
 
 const app =express();
 
-//middleware
 app.use(express.json());
 app.use(express.urlencoded({extended : false}))
 
