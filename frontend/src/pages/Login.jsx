@@ -2,7 +2,7 @@ import React from 'react'
 
 function Login() {
   return (
-    <div>Login</div>
+    <div className='bg-gray-700 text-white h-screen'>Login</div>
   )
 }
 
