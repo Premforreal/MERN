@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
-    "server": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend"
   },
   "author": "Prem Kumar",
   "license": "ISC",
@@ -17,7 +18,8 @@
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.7.0"
+    "mongoose": "^6.7.0",
+    "react-router-dom": "^6.4.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
