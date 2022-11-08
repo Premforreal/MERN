@@ -26,25 +26,23 @@ function Login() {
       }))
   };
 
-  function onSubmit(e){
+  function onSubmit(e)
+  {
     e.preventDefault();
-
+    
     axios.post(`${baseURL}/users/login`, {
       email: email,
       password: password
-    }
-      ).then((response) => {
-          console.log(response.data);
-          console.log(response.data.name);
-        }
-        ).catch((error)=>{
-            toast.error(error.response.data.message, {
+      }).then((response) => {
+          console.log(response.data.token);
+        }).catch((error)=>{
+              toast.error(error.response.data.message, {
               position: toast.POSITION.TOP_CENTER
             });
-            console.log(error.response.data.message);
-            console.log((Object.keys(error).length));
-        })
-    };
+            // console.log(error.response.data.message);
+            // console.log((Object.keys(error).length));
+            })
+      };
 
 
   return (

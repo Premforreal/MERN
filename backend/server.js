@@ -4,9 +4,14 @@ const dotenv  = require('dotenv').config();
 //PORT=5000; gives error. Don't use semicolon.
 const port    = process.env.PORT || 5000
 const colors = require('colors');
+var cors = require('cors');
+
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+
 const {errorHandler} = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
-var cors = require('cors');
 
 connectDB();
 
