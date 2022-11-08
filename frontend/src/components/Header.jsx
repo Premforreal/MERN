@@ -1,22 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa';
 
 function Header() {
   return (
-    <header className='top-0  flex flex-row bg-black text-white w-full'>
-        <div className='w-2/3 p-2 text-2xl'>
-            <Link to='/'>
-                GoalSetter
-            </Link>
+    <header className='header'>
+        <div className='logo'>
+            <Link to='/'>GoalSetter</Link>
         </div>
         <ul className='flex flex-row'>
             <li className='p-2'>
                 <Link to='/login'>
+                    <FaSignInAlt/>
                     Login
                 </Link>            
             </li>
             <li className='p-2'>
                 <Link to='/register'>
+                    <FaUser/>
                     Register
                 </Link>            
             </li>
