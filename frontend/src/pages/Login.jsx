@@ -1,8 +1,12 @@
 import axios from 'axios';
 import React, {useState,useEffect} from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const baseURL = "http://localhost:5000/api";
 //@register user POST   :http://localhost:5000/api/users/
@@ -11,7 +15,6 @@ const baseURL = "http://localhost:5000/api";
 
 
 function Login() {
-  
   const [formData, setFormData] = useState({
     email:'',
     password:'',
@@ -29,7 +32,7 @@ function Login() {
   function getUser(token){
       axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
       ).then((response)=>{
-          console.log(response.data);
+          // console.log(response.data.name);
         }).catch((error)=>{
               toast.error(error.response.data.message, {
               position: toast.POSITION.TOP_CENTER
@@ -45,8 +48,14 @@ function Login() {
       email: email,
       password: password
       }).then((response) => {
-          console.log(response.data.token);
-          getUser(response.data.token);
+          // console.log(response.data.token);
+          cookies.set("TOKEN", response.data.token, {
+            path: "/",
+          });
+          const token = cookies.get("TOKEN");
+          // console.log(token);
+          window.location.href = "/";
+          // getUser(response.data.token);
         }).catch((error)=>{
               toast.error(error.response.data.message, {
               position: toast.POSITION.TOP_CENTER
@@ -64,7 +73,6 @@ function Login() {
       <h1><FaSignInAlt/> Login</h1>
       <p> Please enter your email and password</p>
     </section>
-
     <section className='form'>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
