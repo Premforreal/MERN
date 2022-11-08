@@ -26,6 +26,17 @@ function Login() {
       }))
   };
 
+  function getUser(token){
+      axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
+      ).then((response)=>{
+          console.log(response.data);
+        }).catch((error)=>{
+              toast.error(error.response.data.message, {
+              position: toast.POSITION.TOP_CENTER
+            });
+          })
+  }
+
   function onSubmit(e)
   {
     e.preventDefault();
@@ -35,6 +46,7 @@ function Login() {
       password: password
       }).then((response) => {
           console.log(response.data.token);
+          getUser(response.data.token);
         }).catch((error)=>{
               toast.error(error.response.data.message, {
               position: toast.POSITION.TOP_CENTER
