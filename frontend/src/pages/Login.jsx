@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+const token = cookies.get("TOKEN");
 
 const baseURL = "http://localhost:5000/api";
 //@register user POST   :http://localhost:5000/api/users/
@@ -14,7 +15,8 @@ const baseURL = "http://localhost:5000/api";
 //@get user details GET :http://localhost:5000/api/users/me
 
 
-function Login() {
+function Login({loggedIn,isLoggedin}) {
+
   const [formData, setFormData] = useState({
     email:'',
     password:'',
@@ -24,45 +26,52 @@ function Login() {
 
   function onChange(e){
       setFormData((prevState)=>({
-        ...prevState,
+        ...prevState, 
           [e.target.name]:e.target.value,
       }))
   };
 
+  useEffect(() => {
+    console.log(token);
+    getUser(token);
+    console.log(loggedIn);  
+    // return () => {
+      
+    // }
+  }, [])
+  
+
   function getUser(token){
       axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
       ).then((response)=>{
-          // console.log(response.data.name);
+          console.log(response.data.name);
+          if(response.data.name){
+            isLoggedin(true);
+            window.location.href = "/";
+          }
         }).catch((error)=>{
               toast.error(error.response.data.message, {
               position: toast.POSITION.TOP_CENTER
-            });
-          })
+            })
+          });
   }
 
-  function onSubmit(e)
-  {
+  function onSubmit(e){
     e.preventDefault();
     
     axios.post(`${baseURL}/users/login`, {
       email: email,
       password: password
       }).then((response) => {
-          // console.log(response.data.token);
           cookies.set("TOKEN", response.data.token, {
             path: "/",
           });
-          const token = cookies.get("TOKEN");
-          // console.log(token);
-          window.location.href = "/";
-          // getUser(response.data.token);
+          // window.location.href = "/";
+          getUser(response.data.token);
         }).catch((error)=>{
               toast.error(error.response.data.message, {
               position: toast.POSITION.TOP_CENTER
-            });
-            // console.log(error.response.data.message);
-            // console.log((Object.keys(error).length));
-            })
+            })});
       };
 
 

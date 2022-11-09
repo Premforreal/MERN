@@ -28,6 +28,15 @@ li {
   line-height: 2.2;
 }
 
+.sign-out{
+  cursor: pointer;
+}
+
+.sign-out:hover{
+  transform: scale(0.98);
+  opacity: 0.75;
+}
+
 h1,
 h2,
 h3 {
