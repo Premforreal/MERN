@@ -32,9 +32,9 @@ function Login({loggedIn,isLoggedin}) {
   };
 
   useEffect(() => {
-    console.log(token);
+    // console.log(token);
     getUser(token);
-    console.log(loggedIn);  
+    // console.log(loggedIn);  
     // return () => {
       
     // }

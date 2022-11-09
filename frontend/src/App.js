@@ -4,20 +4,23 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Header from './components/Header';
 import ProtectedRoutes from './features/ProtectedRoutes';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   function isLoggedin(value){
     setLoggedIn(value);
-    console.log(`app:${loggedIn}`);
   };
+
+  useEffect(() => {
+    console.log(`from app ${loggedIn}`);
+  }, [loggedIn])
   
   return (
         <Router>
           <div>
-              <Header loggedIn={loggedIn} />
+              <Header loggedIn={loggedIn} isLoggedin={isLoggedin} />
               <Routes>
                   {/* <Route path='/' 
                         element={
