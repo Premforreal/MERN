@@ -15,7 +15,7 @@ const baseURL = "http://localhost:5000/api";
 //@get user details GET :http://localhost:5000/api/users/me
 
 
-function Login({loggedIn,isLoggedin}) {
+function Login() {
 
   const [formData, setFormData] = useState({
     email:'',
@@ -31,14 +31,14 @@ function Login({loggedIn,isLoggedin}) {
       }))
   };
 
-  useEffect(() => {
-    // console.log(token);
-    getUser(token);
-    // console.log(loggedIn);  
-    // return () => {
+  // useEffect(() => {
+  //   // console.log(token);
+  //   getUser(token);
+  //   // console.log(loggedIn);  
+  //   // return () => {
       
-    // }
-  }, [])
+  //   // }
+  // }, [])
   
 
   function getUser(token){
@@ -46,8 +46,8 @@ function Login({loggedIn,isLoggedin}) {
       ).then((response)=>{
           console.log(response.data.name);
           if(response.data.name){
-            isLoggedin(true);
-            window.location.href = "/";
+            // isLoggedin(true);
+            // window.location.href = "/";
           }
         }).catch((error)=>{
               toast.error(error.response.data.message, {

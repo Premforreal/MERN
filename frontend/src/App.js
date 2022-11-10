@@ -1,41 +1,30 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DashBoard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Header from './components/Header';
 import ProtectedRoutes from './features/ProtectedRoutes';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,createContext,useContext} from 'react';
+import { AuthContext } from './features/context';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  function isLoggedin(value){
-    setLoggedIn(value);
-  };
-
-  useEffect(() => {
-    console.log(`from app ${loggedIn}`);
-  }, [loggedIn])
+  const [loggedIn,setLoggedIn ] = useState(false);
+  const isLoggedIn = useContext(AuthContext);
   
   return (
+    <AuthContext.Provider value={{loggedIn,setLoggedIn}}>
         <Router>
           <div>
-              <Header loggedIn={loggedIn} isLoggedin={isLoggedin} />
-              <Routes>
-                  {/* <Route path='/' 
-                        element={
-                          <ProtectedRoutes token={token}>
-                              <DashBoard/>
-                          </ProtectedRoutes>
-                        }/> */}
-                  {/* <Route path='/' element={<DashBoard/>}/> */}
+              <Header/>
+              <Switch>
+                  {/* <ProtectedRoutes component={<DashBoard/>} /> */}
                   <Route path='/' element={<DashBoard />} />
-                  <Route path='/login' 
-                      element={<Login loggedIn={loggedIn} isLoggedin={isLoggedin} />}/>
+                  <Route path='/login' element={<Login/>}/>
                   <Route path='/register' element={<Register/>}/>
-              </Routes>
+              </Switch>
           </div>
-        </Router>
+       </Router>
+    </AuthContext.Provider>
   );
 }
 
