@@ -1,8 +1,22 @@
-import React, {useState,useEffect} from 'react';
+import axios from 'axios';
+import React, {useState,useEffect,useContext} from 'react';
+import { AuthContext } from '../features/context';
+
 import { FaUser } from 'react-icons/fa';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+const token = cookies.get("TOKEN");
+
+const baseURL = "http://localhost:5000/api";
+
+
 function Register() {
-  
+  const { loggedIn, setLoggedIn } = useContext(AuthContext);
+
   const [formData, setFormData] = useState({
     name:'',
     email:'',
@@ -19,12 +33,41 @@ function Register() {
       }))
   };
 
+  function getUser(token){
+    axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
+    ).then((response)=>{
+        console.log(response.data.name);
+        if(response.data.name){
+          setLoggedIn(true);
+          window.location.href = "/";
+        }
+      }).catch((error)=>{
+            toast.error(error.response.data.message, {
+            position: toast.POSITION.TOP_CENTER
+          })
+        });
+  }
+
   function onSubmit(e){
     e.preventDefault();
+    axios.post(`${baseURL}/users/`, {
+      name:name,
+      email: email,
+      password: password
+      }).then((response) => {
+          cookies.set("TOKEN", response.data.token, {
+            path: "/",
+          });
+          getUser(response.data.token);
+        }).catch((error)=>{
+              toast.error(error.response.data.message, {
+              position: toast.POSITION.TOP_CENTER
+            })});
   };
 
   return (
     <>
+    <ToastContainer />
     <section className='heading'>
       <h1>
         <FaUser/> Register

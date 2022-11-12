@@ -13,9 +13,6 @@ const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
 const baseURL = "http://localhost:5000/api";
-//@register user POST   :http://localhost:5000/api/users/
-//@login user POST      :http://localhost:5000/api/users/login
-//@get user details GET :http://localhost:5000/api/users/me
 
 
 function Login() {
