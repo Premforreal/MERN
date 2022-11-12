@@ -10,24 +10,22 @@ import NotFound from './pages/NotFound';
 
 function App() {
   const [loggedIn,setLoggedIn ] = useState(false);
-  // const isLoggedIn = useContext(AuthContext);
   
   return (
     <AuthContext.Provider value={{loggedIn,setLoggedIn}}>
               <Header/>
               <Switch>
-                  {/* <ProtectedRoutes component={<DashBoard/>} /> */}
                   <Route exact path='/register' component={Register}/>
-                  <Route exact path='/login'  render={()=>(<Login/>)} />
-                  <Route exact path='/' 
+                  <Route exact path='/login'  component={Login} />
+                  {/* <Route exact path='/' 
                       render={props=>loggedIn ? 
                               (<DashBoard /> )
                                 : 
                               (<Redirect to="/login" />)
                             } 
-                        />
+                        /> */}
+                  <ProtectedRoutes component={DashBoard} />
                   <Route path="*" component={NotFound} />
-                  {/* <ProtectedRoutes component={<DashBoard/>} /> */}
               </Switch>
      </AuthContext.Provider>
   );

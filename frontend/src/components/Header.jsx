@@ -9,16 +9,29 @@ const token = cookies.get("TOKEN");
 function Header() {
     const { loggedIn, setLoggedIn } = useContext(AuthContext);
 
+    function signout(){
+        cookies.remove("TOKEN");
+        setLoggedIn(!loggedIn);
+        window.location.href = "/login";
+        // window.location.reload();
+    }
+
   return (
     <header className='header'>
         <div className='logo'>
             <Link to='/'>GoalSetter</Link>
         </div>
-        <button onClick={()=>{setLoggedIn(!loggedIn)}}>click</button>
-            
+        {/* <button onClick={()=>{setLoggedIn(!loggedIn)}}>click</button>
+        <button onClick={()=>{
+                        cookies.remove("TOKEN");
+                        window.location.reload();
+                                }}>
+                remove token
+        </button>         */}
+
             <ul >
                 {loggedIn ?
-                            <li className=''>
+                            <li className='' onClick={signout}>
                                 <Link to='/login'>
                                     <FaSignOutAlt/>
                                         signout

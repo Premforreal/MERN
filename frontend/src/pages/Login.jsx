@@ -1,7 +1,10 @@
 import axios from 'axios';
-import React, {useState,useEffect} from 'react';
-import { FaSignInAlt } from 'react-icons/fa';
+import React, {useState,useEffect,useContext} from 'react';
 
+import {useHistory} from 'react-router-dom';
+
+import { FaSignInAlt } from 'react-icons/fa';
+import { AuthContext } from '../features/context';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -16,7 +19,8 @@ const baseURL = "http://localhost:5000/api";
 
 
 function Login() {
-
+  const history = useHistory();
+  const { loggedIn, setLoggedIn } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email:'',
     password:'',
@@ -29,25 +33,16 @@ function Login() {
         ...prevState, 
           [e.target.name]:e.target.value,
       }))
-  };
-
-  // useEffect(() => {
-  //   // console.log(token);
-  //   getUser(token);
-  //   // console.log(loggedIn);  
-  //   // return () => {
-      
-  //   // }
-  // }, [])
-  
+  };  
 
   function getUser(token){
       axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
       ).then((response)=>{
           console.log(response.data.name);
           if(response.data.name){
-            // isLoggedin(true);
-            // window.location.href = "/";
+            setLoggedIn(true);
+            window.location.href = "/";
+            // history.push('/');
           }
         }).catch((error)=>{
               toast.error(error.response.data.message, {

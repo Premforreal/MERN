@@ -3,7 +3,6 @@ import axios from 'axios';
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
-// console.log(token);
 const baseURL = "http://localhost:5000/api";
 
 function Dashboard() {
@@ -11,15 +10,15 @@ const [first, setfirst] = useState('name');
 
   function User(){
           axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
-        ).then((response)=>{
-            // console.log(response.data.name);
-            const name = (response.data.name);
-            setfirst(name);
-          
-          }).catch((error)=>{
-              console.log(error);
-          });
-       }
+              
+            ).then((response)=>{
+                  const name = (response.data.name);
+                  setfirst(name);
+                
+                }).catch((error)=>{
+                      console.log(error);
+                    });
+        }
        
   return (
     <div className=''>
