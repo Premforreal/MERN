@@ -8,23 +8,21 @@ const token = cookies.get("TOKEN");
 
 function Header() {
     const { loggedIn, setLoggedIn } = useContext(AuthContext);
-    // const status = useContext(AuthContext);
-    // const [newName, setNewName] = useState("");
 
   return (
     <header className='header'>
         <div className='logo'>
-            <Link to='/'>{loggedIn ? 'true' : 'false'}GoalSetter</Link>
+            <Link to='/'>GoalSetter</Link>
         </div>
         <button onClick={()=>{setLoggedIn(!loggedIn)}}>click</button>
             
             <ul >
                 {loggedIn ?
                             <li className=''>
-                                {/* <Link to='/login'> */}
+                                <Link to='/login'>
                                     <FaSignOutAlt/>
                                         signout
-                                {/* </Link>*/}
+                                </Link>
                             </li>
             :
                         <>
