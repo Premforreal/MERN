@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, {useState,useEffect,useContext} from 'react';
-import { AuthContext } from '../features/context';
 
 import { FaUser } from 'react-icons/fa';
 
@@ -15,7 +14,6 @@ const baseURL = "http://localhost:5000/api";
 
 
 function Register() {
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     name:'',
@@ -38,7 +36,6 @@ function Register() {
     ).then((response)=>{
         console.log(response.data.name);
         if(response.data.name){
-          setLoggedIn(true);
           window.location.href = "/";
         }
       }).catch((error)=>{

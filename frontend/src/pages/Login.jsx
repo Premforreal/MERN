@@ -1,23 +1,26 @@
 import axios from 'axios';
 import React, {useState,useEffect,useContext} from 'react';
-
-import {useHistory} from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import {Link, useNavigate,useLocation} from 'react-router-dom';
 
 import { FaSignInAlt } from 'react-icons/fa';
-import { AuthContext } from '../features/context';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
-const token = cookies.get("TOKEN");
 
 const baseURL = "http://localhost:5000/api";
 
 
 function Login() {
-  const history = useHistory();
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  const {setAuth} = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/' ;
+
   const [formData, setFormData] = useState({
     email:'',
     password:'',
@@ -30,16 +33,16 @@ function Login() {
         ...prevState, 
           [e.target.name]:e.target.value,
       }))
-  };  
+ };  
 
   function getUser(token){
       axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
       ).then((response)=>{
           console.log(response.data.name);
           if(response.data.name){
-            setLoggedIn(true);
-            window.location.href = "/";
-            // history.push('/');
+            let user = response.data.name;
+            setAuth({user, token});
+            navigate(from , { replace:true });
           }
         }).catch((error)=>{
               toast.error(error.response.data.message, {
@@ -58,7 +61,6 @@ function Login() {
           cookies.set("TOKEN", response.data.token, {
             path: "/",
           });
-          // window.location.href = "/";
           getUser(response.data.token);
         }).catch((error)=>{
               toast.error(error.response.data.message, {
@@ -74,6 +76,7 @@ function Login() {
       <h1><FaSignInAlt/> Login</h1>
       <p> Please enter your email and password</p>
     </section>
+
     <section className='form'>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
@@ -87,6 +90,7 @@ function Login() {
             onChange={onChange}
           />
         </div>
+        
         <div className='form-group'>
           <input
             type='password'
@@ -98,6 +102,7 @@ function Login() {
             onChange={onChange}
           />
         </div>
+
         <div className='form-group'>
           <button type='submit' className='btn btn-block'>
             Submit
