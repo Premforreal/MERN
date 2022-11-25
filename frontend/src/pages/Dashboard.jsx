@@ -1,7 +1,6 @@
 import {useState,useEffect} from 'react';
 import axios from 'axios';
-// import {} from 'react-icons/fa';
-
+import {FaRegTrashAlt,FaPenSquare} from 'react-icons/fa';
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
@@ -33,19 +32,19 @@ function Dashboard() {
       function Goals(){
         axios.get(`${baseURL}/goals`,
                   { headers: {"Authorization" : `Bearer ${token}`} }
-                ).then((response)=>{
+                  ).then((response)=>{
                         let goalsArray = [];
                         for(let i=0; i < response.data.length ; ++i){
                              goalsArray.push({
                                 text:response.data[i].text,
                                 id:response.data[i]._id
                             });
-                        }
-                        setGoals(goalsArray);
-                  }).catch((error)=>{
-                        console.log(error);
-                  });
-        };
+                          }
+                          setGoals(goalsArray);
+                      }
+                    ).catch((error)=>{
+                          console.log(error);
+                    })};
 
 //@form for create goals : This function clears the input field  and sets text value to state
         function onChange(e){
@@ -55,7 +54,7 @@ function Dashboard() {
           }))
         };  
 //@Create goals : text value from above function is sent to backend using axios
-        async function createGoals (){
+    async function createGoals (){
           const config = {headers : {Authorization : `Bearer ${token}`}};
           const response = await axios.post(`${baseURL}/goals`,{text : formData.task},config);
           const data =  {text : response.data.text, id:response.data._id};
@@ -68,9 +67,25 @@ function Dashboard() {
           createGoals();
         };
 
+//@delete goal
+ async function deleteGoal(id){
+  console.log(id);
+  // const config = {headers : {Authorization : `Bearer ${token}`}};
+  // const response = await axios.delete(`${baseURL}/goals`,{text : formData.task},config);
+  // const data =  {text : response.data.text, id:response.data._id};
+  // setGoals((prevState)=>([...prevState,data]));
+ }
+//@update goal
+ async function updateGoal(id){
+  console.log(id);
+  // const config = {headers : {Authorization : `Bearer ${token}`}};
+  // const response = await axios.delete(`${baseURL}/goals`,{text : formData.task},config);
+  // const data =  {text : response.data.text, id:response.data._id};
+  // setGoals((prevState)=>([...prevState,data]));
+ }
+
   return (
-    <>
-       <div className='dashboard'>
+    <div className='dashboard'>
           <section className='heading'>
             <h1>Welcome {user.name}</h1>
             <p>Goals Dashboard</p>
@@ -98,21 +113,23 @@ function Dashboard() {
             </form>
           </section>
 
-        </div>
           {goals[0] ?
-            (<div className="content">
-                <div className='goals'>
-                  {goals.map((goal)=>(
-                    <div className="goal" key={goal.id}>
-                      <h2>{goal.text}</h2>
+            (<div className='goals-container'>
+                {goals.map((goal)=>(
+                  <div className="goal" key={goal.id}>
+                    <h2>{goal.text}</h2>
+                    <div className="goal-icons">
+                      <FaRegTrashAlt onClick={()=>deleteGoal(goal.id)} />
+                      <FaPenSquare   onClick={()=>updateGoal(goal.id)}   />
                     </div>
-                  ))}
-                </div>
-            </div>)
+                  </div>
+                ))}
+              </div>)
           :
           (<h1>You have no goals.</h1>)
           }
-    </>);
+      </div>
+  );
 }
 
 export default Dashboard;
