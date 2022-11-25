@@ -30,17 +30,6 @@ function Dashboard() {
                     console.log(error);
         })};
 
-    // function getGoals(input){
-    //       let output = [];
-    //       for (let i=0; i < input.length ; ++i){
-    //           output.push({
-    //                         text:input[i].text,
-    //                         id:input[i]._id
-    //                       });
-    //         }
-    //       return output;
-    //    };
-
       function Goals(){
         axios.get(`${baseURL}/goals`,
                   { headers: {"Authorization" : `Bearer ${token}`} }
