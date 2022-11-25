@@ -38,7 +38,7 @@ function Login() {
   function getUser(token){
       axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
       ).then((response)=>{
-          console.log(response.data.name);
+          // console.log(response.data.name);
           if(response.data.name){
             let user = response.data.name;
             setAuth({user, token});

@@ -8,65 +8,82 @@ const cookies = new Cookies();
 const baseURL = "http://localhost:5000/api";
 
 function Dashboard() {
-    const [name, setName] = useState('');
+    const [user,setUSer] = useState({
+        email:'',
+        id:'',
+        name:''
+    });
     const [goals, setGoals] = useState([]);
     const [formData, setFormData] = useState({task:''});
     const token = cookies.get("TOKEN");
+    
+    useEffect(() => {
+      User();
+      Goals();
+    }, []);
 
     function User(){
-            axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
-              ).then((response)=>{
-                      setName(response.data.name);
-                    }).catch((error)=>{
-                          console.log(error);
-              })};
+        axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
+        ).then((response)=>{
+                setUSer(response.data);
+              }).catch((error)=>{
+                    console.log(error);
+        })};
 
-    function getGoals(input){
-          let output = [];
-          for (let i=0; i < input.length ; ++i)
-              output.push({
-                            text:input[i].text,
-                            id:input[i]._id
-                          });
-          return output;
-      };
-
-      let allGoals;
+    // function getGoals(input){
+    //       let output = [];
+    //       for (let i=0; i < input.length ; ++i){
+    //           output.push({
+    //                         text:input[i].text,
+    //                         id:input[i]._id
+    //                       });
+    //         }
+    //       return output;
+    //    };
 
       function Goals(){
         axios.get(`${baseURL}/goals`,
                   { headers: {"Authorization" : `Bearer ${token}`} }
                 ).then((response)=>{
-                        allGoals = getGoals(response.data);
-                        setGoals(allGoals);
+                        let goalsArray = [];
+                        for(let i=0; i < response.data.length ; ++i){
+                             goalsArray.push({
+                                text:response.data[i].text,
+                                id:response.data[i]._id
+                            });
+                        }
+                        setGoals(goalsArray);
                   }).catch((error)=>{
                         console.log(error);
                   });
         };
 
-        useEffect(() => {
-            User();
-            Goals();
-        }, []);
-
+//@form for create goals : This function clears the input field  and sets text value to state
         function onChange(e){
           setFormData((prevState)=>({
             ...prevState, 
               [e.target.name]:e.target.value,
           }))
         };  
-
-        const onSubmit = (e)=>{
+//@Create goals : text value from above function is sent to backend using axios
+        async function createGoals (){
+          const config = {headers : {Authorization : `Bearer ${token}`}};
+          const response = await axios.post(`${baseURL}/goals`,{text : formData.task},config);
+          const data =  {text : response.data.text, id:response.data._id};
+          setGoals((prevState)=>([...prevState,data]));
+        }
+//the setGoal function on backend expects {text : req.user.text,user : req.user.id}
+        function onSubmit(e){
           e.preventDefault();
           setFormData({task:''});
-          console.log(formData.task);
-        }
+          createGoals();
+        };
 
   return (
     <>
        <div className='dashboard'>
           <section className='heading'>
-            <h1>Welcome {name}</h1>
+            <h1>Welcome {user.name}</h1>
             <p>Goals Dashboard</p>
           </section>
 

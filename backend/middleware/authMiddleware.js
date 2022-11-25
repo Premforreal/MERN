@@ -4,16 +4,15 @@ const User = require('../models/userModel');
 
 //@desc : we are checking for authorization header
 //making sure its a bearer token
-//decoding and verifying the token 
+//decoding and verifying the token
 //getting user from token
 // calling next piece of middleware
 const protect = asyncHandler(async (req,res,next)=>{
+    // console.log(req.headers.authorization);
+    // console.log(`text ${req.body.text}`);
     let token;
 
-    if(req.headers.authorization && 
-        req.headers.authorization.startsWith('Bearer')
-        )
-        {
+    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
             try{
                 //get token from header
                 token = req.headers.authorization.split(' ')[1]; //"bearer <token>" splits by space
@@ -25,7 +24,7 @@ const protect = asyncHandler(async (req,res,next)=>{
                 req.user = await User.findById(decoded.id).select('-password')//won't include the password;
                 next();
             } catch(err){
-                console.log(err);
+                // console.log(err);
                 res.status(401);
                 throw new Error("not authorized");
             }
