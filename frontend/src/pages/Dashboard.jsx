@@ -9,17 +9,21 @@ const cookies = new Cookies();
 const baseURL = "http://localhost:5000/api";
 
 function Dashboard() {
-  //this hook deals with user data
+    //this hook deals with user data
     const [user,setUSer] = useState({
         email:'',
         id:'',
         name:''
     });
+  //this hook deals with goal data
     const [goals, setGoals] = useState([]);
+  //this hook deals with form data
+  //@clears form, stores form value to formData 
     const [formData, setFormData] = useState({task:''});
+  //Whenever our front end is in "waiting" state this hook setsoff a spinner
     const [loading, setLoading] = useState(true);
     const token = cookies.get("TOKEN");
-    
+  //useEffect sets user name and goals on page load
     useEffect(() => {
       User();
       Goals();
@@ -32,7 +36,8 @@ function Dashboard() {
                 setUSer(response.data);
               }).catch((error)=>{
                     console.log(error);
-        })};
+        })
+      };
 
       function Goals(){
         axios.get(`${baseURL}/goals`,
@@ -49,7 +54,8 @@ function Dashboard() {
                       }
                     ).catch((error)=>{
                           console.log(error);
-                    })};
+                    })
+      };
 
 //@form for create goals : This function clears the input field  and sets text value to state
         function onChange(e){
@@ -58,6 +64,7 @@ function Dashboard() {
               [e.target.name]:e.target.value,
           }))
         };  
+  
 //@Create goals : text value from above function is sent to backend using axios
     async function createGoals (){
           setLoading(true);
