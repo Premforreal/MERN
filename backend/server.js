@@ -29,7 +29,7 @@ app.use(cors(
 //https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
 app.use(express.json());
 app.use(express.urlencoded({extended : false}))
-
+ 
 app.use('/api/goals',require('./routes/goalRoutes'));
 app.use('/api/users',require('./routes/userRoutes'));
 
