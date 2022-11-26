@@ -1,12 +1,15 @@
 import {useState,useEffect} from 'react';
 import axios from 'axios';
-import {FaRegTrashAlt,FaPenSquare} from 'react-icons/fa';
+import {FaRegTrashAlt} from 'react-icons/fa';
+import {BsPencilSquare} from 'react-icons/bs';
+import LoadingComponent from '../components/LoadingComponent';
+
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
-
 const baseURL = "http://localhost:5000/api";
 
 function Dashboard() {
+  //this hook deals with user data
     const [user,setUSer] = useState({
         email:'',
         id:'',
@@ -14,11 +17,13 @@ function Dashboard() {
     });
     const [goals, setGoals] = useState([]);
     const [formData, setFormData] = useState({task:''});
+    const [loading, setLoading] = useState(true);
     const token = cookies.get("TOKEN");
     
     useEffect(() => {
       User();
       Goals();
+      setLoading(false);
     }, []);
 
     function User(){
@@ -55,33 +60,59 @@ function Dashboard() {
         };  
 //@Create goals : text value from above function is sent to backend using axios
     async function createGoals (){
+          setLoading(true);
           const config = {headers : {Authorization : `Bearer ${token}`}};
           const response = await axios.post(`${baseURL}/goals`,{text : formData.task},config);
           const data =  {text : response.data.text, id:response.data._id};
           setGoals((prevState)=>([...prevState,data]));
+          setLoading(false);
         }
 //the setGoal function on backend expects {text : req.user.text,user : req.user.id}
         function onSubmit(e){
             e.preventDefault();
+            if(formData.task===''){
+              window.alert('Please add a text field.')
+            }
+            else{
             setFormData({task:''});
             createGoals();
+            }
         };
-
-//@DELETE : /api/goals/id
- async function deleteGoal(id){
-      const config = {headers : {Authorization : `Bearer ${token}`}};
-      const response = await axios.delete(`${baseURL}/goals/${id}`,config);
- 
-      if(response.data.id === id){
-          let newGoals = goals.filter(goal=>goal.id!==id);
-          setGoals(newGoals);
-        }
- }
 
 //@UPDATE : /api/goals/id
  async function updateGoal(id){
-      
- }
+      if(formData.task===''){
+        window.alert('To update a task : type text in the form and click on update icon.')
+      }
+      else{
+        setLoading(true);
+        const config = {headers : {Authorization : `Bearer ${token}`}};
+        const response = await axios.put(`${baseURL}/goals/${id}`,{text:formData.task},config);
+          if(response.data._id === id){
+              let foundIndex = goals.findIndex(goal=>goal.id==id);
+              goals[foundIndex] = {text : response.data.text, id:response.data._id};
+              setGoals(goals);
+            }
+      }
+      setFormData({task:''});
+      setLoading(false);
+ };
+
+ //@DELETE : /api/goals/id
+ async function deleteGoal(id){
+  setLoading(true);
+  const config = {headers : {Authorization : `Bearer ${token}`}};
+  const response = await axios.delete(`${baseURL}/goals/${id}`,config);
+  if(response.data.id === id){
+      let newGoals = goals.filter(goal=>goal.id!==id);
+      setGoals(newGoals);
+    }
+    setLoading(false);
+}
+
+ if (loading) {
+  return <LoadingComponent />;
+}
 
   return (
     <div className='dashboard'>
@@ -116,11 +147,11 @@ function Dashboard() {
             (<div className='goals-container'>
                 {goals.map((goal)=>(
                   <div className="goal" key={goal.id}>
-                    <h2>{goal.text}</h2>
-                    <div className="goal-icons">
-                      <FaRegTrashAlt onClick={()=>deleteGoal(goal.id)} />
-                      <FaPenSquare   onClick={()=>updateGoal(goal.id)}   />
-                    </div>
+                        <h2>{goal.text}</h2>
+                      <div className="goal-icons">
+                        <FaRegTrashAlt onClick={()=>deleteGoal(goal.id)}/>
+                        <BsPencilSquare onClick={()=>updateGoal(goal.id)}/>
+                      </div>
                   </div>
                 ))}
               </div>)
