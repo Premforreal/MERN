@@ -1,5 +1,4 @@
-{
-  "name": "mern",
+{"name": "mern",
   "version": "1.0.0",
   "description": "This is a mern project authentication",
   "main": "server.js",
