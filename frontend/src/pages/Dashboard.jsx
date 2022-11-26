@@ -62,26 +62,25 @@ function Dashboard() {
         }
 //the setGoal function on backend expects {text : req.user.text,user : req.user.id}
         function onSubmit(e){
-          e.preventDefault();
-          setFormData({task:''});
-          createGoals();
+            e.preventDefault();
+            setFormData({task:''});
+            createGoals();
         };
 
-//@delete goal
+//@DELETE : /api/goals/id
  async function deleteGoal(id){
-  console.log(id);
-  // const config = {headers : {Authorization : `Bearer ${token}`}};
-  // const response = await axios.delete(`${baseURL}/goals`,{text : formData.task},config);
-  // const data =  {text : response.data.text, id:response.data._id};
-  // setGoals((prevState)=>([...prevState,data]));
+      const config = {headers : {Authorization : `Bearer ${token}`}};
+      const response = await axios.delete(`${baseURL}/goals/${id}`,config);
+ 
+      if(response.data.id === id){
+          let newGoals = goals.filter(goal=>goal.id!==id);
+          setGoals(newGoals);
+        }
  }
-//@update goal
+
+//@UPDATE : /api/goals/id
  async function updateGoal(id){
-  console.log(id);
-  // const config = {headers : {Authorization : `Bearer ${token}`}};
-  // const response = await axios.delete(`${baseURL}/goals`,{text : formData.task},config);
-  // const data =  {text : response.data.text, id:response.data._id};
-  // setGoals((prevState)=>([...prevState,data]));
+      
  }
 
   return (

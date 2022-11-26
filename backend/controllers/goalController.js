@@ -31,7 +31,7 @@ const setGoal = asyncHandler(async (req,res)=>{
 
 
 //@desc   gets all goals but aft6er auth it gets specific user goals
-//@route  PUT/api/goals
+//@route  PUT/api/goals/id
 //@access Private
 const updateGoal = asyncHandler( async (req,res)=>{
     const goal = await Goal.findById(req.params.id);
@@ -62,7 +62,7 @@ const updateGoal = asyncHandler( async (req,res)=>{
 
 
 //@desc   gets all goals but aft6er auth it gets specific user goals
-//@route  DELETE/api/goals
+//@route  DELETE/api/goals/id
 //@access Private
 const deleteGoal = asyncHandler(async (req,res)=>{
     const goal = await Goal.findById(req.params.id);
