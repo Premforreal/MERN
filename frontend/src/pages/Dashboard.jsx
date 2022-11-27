@@ -1,9 +1,7 @@
 import {useState,useEffect} from 'react';
 import axios from 'axios';
-import {FaRegTrashAlt} from 'react-icons/fa';
-import {BsPencilSquare} from 'react-icons/bs';
 import LoadingComponent from '../components/LoadingComponent';
-
+import GoalComponent from '../components/GoalComponent';
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const baseURL = "http://localhost:5000/api";
@@ -19,7 +17,7 @@ function Dashboard() {
     const [goals, setGoals] = useState([]);
   //this hook deals with form data
   //@clears form, stores form value to formData 
-    const [formData, setFormData] = useState({task:''});
+    const [formData, setFormData] = useState({title:'',task:''});
   //Whenever our front end is in "waiting" state this hook setsoff a spinner
     const [loading, setLoading] = useState(true);
     const token = cookies.get("TOKEN");
@@ -46,6 +44,7 @@ function Dashboard() {
                         let goalsArray = [];
                         for(let i=0; i < response.data.length ; ++i){
                              goalsArray.push({
+                                title:response.data[i].title,
                                 text:response.data[i].text,
                                 id:response.data[i]._id
                             });
@@ -69,20 +68,20 @@ function Dashboard() {
     async function createGoals (){
           setLoading(true);
           const config = {headers : {Authorization : `Bearer ${token}`}};
-          const response = await axios.post(`${baseURL}/goals`,{text : formData.task},config);
-          const data =  {text : response.data.text, id:response.data._id};
+          const response = await axios.post(`${baseURL}/goals`,{text : formData.task,title : formData.title},config);
+          const data =  {title : response.data.title,text : response.data.text, id:response.data._id};
           setGoals((prevState)=>([...prevState,data]));
           setLoading(false);
         }
 //the setGoal function on backend expects {text : req.user.text,user : req.user.id}
         function onSubmit(e){
             e.preventDefault();
-            if(formData.task===''){
-              window.alert('Please add a text field.')
+            if(formData.task==='' || formData.title===''){
+              window.alert('Please add a text field.');
             }
             else{
-            setFormData({task:''});
-            createGoals();
+              setFormData({title:'',task:''});
+              createGoals();
             }
         };
 
@@ -94,14 +93,14 @@ function Dashboard() {
       else{
         setLoading(true);
         const config = {headers : {Authorization : `Bearer ${token}`}};
-        const response = await axios.put(`${baseURL}/goals/${id}`,{text:formData.task},config);
+        const response = await axios.put(`${baseURL}/goals/${id}`,{text:formData.task,title : formData.title},config);
           if(response.data._id === id){
               let foundIndex = goals.findIndex(goal=>goal.id==id);
-              goals[foundIndex] = {text : response.data.text, id:response.data._id};
+              goals[foundIndex] = {title : response.data.title,text : response.data.text, id:response.data._id};
               setGoals(goals);
             }
       }
-      setFormData({task:''});
+      setFormData({title:'',task:''});
       setLoading(false);
  };
 
@@ -133,11 +132,22 @@ function Dashboard() {
               <div className='form-group'>
                 <input
                   type='text'
+                  maxLength={10}
+                  className='form-control'
+                  id='task'
+                  name='title'
+                  value={formData.title}
+                  placeholder='Title'
+                  onChange={onChange}
+                />
+                <input
+                  type='text'
+                  maxLength={20}
                   className='form-control'
                   id='task'
                   name='task'
                   value={formData.task}
-                  placeholder='Enter your task'
+                  placeholder='Take a note...'
                   onChange={onChange}
                 />
               </div>
@@ -152,15 +162,7 @@ function Dashboard() {
 
           {goals[0] ?
             (<div className='goals-container'>
-                {goals.map((goal)=>(
-                  <div className="goal" key={goal.id}>
-                        <h2>{goal.text}</h2>
-                      <div className="goal-icons">
-                        <FaRegTrashAlt onClick={()=>deleteGoal(goal.id)}/>
-                        <BsPencilSquare onClick={()=>updateGoal(goal.id)}/>
-                      </div>
-                  </div>
-                ))}
+                <GoalComponent props={[goals,deleteGoal,updateGoal]} />
               </div>)
           :
           (<h1>You have no goals.</h1>)

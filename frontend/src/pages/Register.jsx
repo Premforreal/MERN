@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, {useState,useEffect,useContext} from 'react';
-
+import {useState} from 'react';
 import { FaUser } from 'react-icons/fa';
+import useAuth from '../hooks/useAuth';
+import {useNavigate,useLocation} from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +15,11 @@ const baseURL = "http://localhost:5000/api";
 
 
 function Register() {
+  const {setAuth} = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/' ;
 
   const [formData, setFormData] = useState({
     name:'',
@@ -36,7 +42,9 @@ function Register() {
     ).then((response)=>{
         console.log(response.data.name);
         if(response.data.name){
-          window.location.href = "/";
+          let user = response.data.name;
+          setAuth({user, token});
+          navigate(from , { replace:true });
         }
       }).catch((error)=>{
             toast.error(error.response.data.message, {
@@ -51,7 +59,7 @@ function Register() {
       name:name,
       email: email,
       password: password
-      }).then((response) => {
+      }).then((response) => {console.log(response);
           cookies.set("TOKEN", response.data.token, {
             path: "/",
           });

@@ -22,6 +22,7 @@ const setGoal = asyncHandler(async (req,res)=>{
         throw new Error("Please add a text field");//this gives a HTML error message
     }
     const goal = await Goal.create({
+        title:req.body.title,
         text:req.body.text,
         user:req.user.id
     });

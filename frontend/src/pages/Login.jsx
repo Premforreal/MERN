@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, {useState,useEffect,useContext} from 'react';
+import React, {useState} from 'react';
 import useAuth from '../hooks/useAuth';
-import {Link, useNavigate,useLocation} from 'react-router-dom';
+import {useNavigate,useLocation} from 'react-router-dom';
 
 import { FaSignInAlt } from 'react-icons/fa';
 
@@ -38,7 +38,6 @@ function Login() {
   function getUser(token){
       axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
       ).then((response)=>{
-          // console.log(response.data.name);
           if(response.data.name){
             let user = response.data.name;
             setAuth({user, token});
