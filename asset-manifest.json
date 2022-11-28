@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/mern-Goals/static/css/main.28c16433.css",
+    "main.js": "/mern-Goals/static/js/main.0fb5b423.js",
+    "static/media/pagenotfound.jpg": "/mern-Goals/static/media/pagenotfound.4d7cc71a8c0994e7cb04.jpg",
+    "index.html": "/mern-Goals/index.html",
+    "main.28c16433.css.map": "/mern-Goals/static/css/main.28c16433.css.map",
+    "main.0fb5b423.js.map": "/mern-Goals/static/js/main.0fb5b423.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.28c16433.css",
+    "static/js/main.0fb5b423.js"
+  ]
+}
