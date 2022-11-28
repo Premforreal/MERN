@@ -23,7 +23,7 @@ function Header() {
   return (
     <header className='header'>
         <div className='logo'>
-            <Link to='/mern-Goals/dashboard'>GoalSetter</Link>
+            <Link to='/mern-Goals/'>GoalSetter</Link>
         </div>
         {auth.user ? 
               <ul>

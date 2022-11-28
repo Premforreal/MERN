@@ -19,7 +19,7 @@ function Login() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/mern-Goals/dashboard' ;
+  const from = location.state?.from?.pathname || '/mern-Goals/' ;
 
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
