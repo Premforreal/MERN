@@ -11,7 +11,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
 
-const baseURL = "http://localhost:5000/api";
+const baseURL = "https://mernbackend-mao3.onrender.com/api";
 
 
 function Register() {
@@ -40,7 +40,7 @@ function Register() {
   function getUser(token){
     axios.get(`${baseURL}/users/me`,{ headers: {"Authorization" : `Bearer ${token}`} }
     ).then((response)=>{
-        console.log(response.data.name);
+        // console.log(response.data.name);
         if(response.data.name){
           let user = response.data.name;
           setAuth({user, token});

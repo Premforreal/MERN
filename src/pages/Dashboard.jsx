@@ -4,7 +4,7 @@ import LoadingComponent from '../components/LoadingComponent';
 import GoalComponent from '../components/GoalComponent';
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
-const baseURL = "http://localhost:5000/api";
+const baseURL = "https://mernbackend-mao3.onrender.com/api";
 
 function Dashboard() {
     //this hook deals with user data
