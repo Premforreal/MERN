@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import useAuth from '../hooks/useAuth';
 import {useNavigate,useLocation} from 'react-router-dom';
-
+import LoadingComponent from '../components/LoadingComponent';
 import { FaSignInAlt } from 'react-icons/fa';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,6 +21,7 @@ function Login() {
   const location = useLocation();
   const from = location.state?.from?.pathname || '/' ;
 
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email:'',
     password:'',
@@ -52,7 +53,7 @@ function Login() {
 
   function onSubmit(e){
     e.preventDefault();
-    
+    setLoading(true);
     axios.post(`${baseURL}/users/login`, {
       email: email,
       password: password
@@ -67,6 +68,9 @@ function Login() {
             })});
       };
 
+  if (loading) {
+    return <LoadingComponent />;
+  }
 
   return (
     <>

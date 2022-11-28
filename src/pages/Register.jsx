@@ -3,7 +3,7 @@ import {useState} from 'react';
 import { FaUser } from 'react-icons/fa';
 import useAuth from '../hooks/useAuth';
 import {useNavigate,useLocation} from 'react-router-dom';
-
+import LoadingComponent from '../components/LoadingComponent';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,6 +21,7 @@ function Register() {
   const location = useLocation();
   const from = location.state?.from?.pathname || '/' ;
 
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name:'',
     email:'',
@@ -55,11 +56,12 @@ function Register() {
 
   function onSubmit(e){
     e.preventDefault();
+    setLoading(true);
     axios.post(`${baseURL}/users/`, {
       name:name,
       email: email,
       password: password
-      }).then((response) => {console.log(response);
+      }).then((response) => {
           cookies.set("TOKEN", response.data.token, {
             path: "/",
           });
@@ -69,6 +71,10 @@ function Register() {
               position: toast.POSITION.TOP_CENTER
             })});
   };
+
+  if (loading) {
+    return <LoadingComponent />;
+  }
 
   return (
     <>
