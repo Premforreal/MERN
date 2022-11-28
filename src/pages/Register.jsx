@@ -19,7 +19,7 @@ function Register() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/' ;
+  const from = location.state?.from?.pathname || '/mern-Goals/dashboard' ;
 
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({

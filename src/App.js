@@ -14,11 +14,11 @@ function App() {
       <Routes>
         <Route  path='/' element={<Layout/>} >
             <Route element={<RequireAuth/>}>
-              <Route  path='/'          element={<DashBoard/>} />
+              <Route  path='/mern-Goals/dashboard' element={<DashBoard/>} />
             </Route>
-              <Route  path='/register'  element={<Register/>}  />
-              <Route  path='/login'     element={<Login/>}     />
-              <Route  path="*"          element={<NotFound/>}  />
+              <Route  path='/mern-Goals/register'  element={<Register/>}  />
+              <Route  path='/mern-Goals/login'     element={<Login/>}     />
+              <Route  path="*"                     element={<NotFound/>}  />
         </Route>
       </Routes>
     </>

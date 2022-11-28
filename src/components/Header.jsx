@@ -12,7 +12,7 @@ function Header() {
     const {auth,setAuth} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/login' ;
+    const from = location.state?.from?.pathname || '/mern-Goals/login' ;
 
     function signout(){
         cookies.remove("TOKEN");
@@ -23,12 +23,12 @@ function Header() {
   return (
     <header className='header'>
         <div className='logo'>
-            <Link to='/'>GoalSetter</Link>
+            <Link to='/mern-Goals/dashboard'>GoalSetter</Link>
         </div>
         {auth.user ? 
               <ul>
                 <li className='' onClick={signout}>
-                        <Link to='/login'>
+                        <Link to='/mern-Goals/login'>
                             <FaSignOutAlt/>
                                 signout
                         </Link>
@@ -37,13 +37,13 @@ function Header() {
         :
                 <ul>
                     <li className=''>
-                        <Link to='/login'>
+                        <Link to='/mern-Goals/login'>
                             <FaSignInAlt/>
                             Login
                         </Link>            
                     </li>
                     <li className=''>
-                        <Link to='/register'>
+                        <Link to='/mern-Goals/register'>
                             <FaUser/>
                             Register
                         </Link>            

@@ -8,7 +8,7 @@ const RequireAuth = () => {
   return (
     auth?.user
         ? <Outlet/>
-        : <Navigate to='/login' state={{from:location}} replace />
+        : <Navigate to='/mern-Goals/login' state={{from:location}} replace />
   );
 };
 
