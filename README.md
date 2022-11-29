@@ -11,15 +11,15 @@ A simple CRUD application with user authentication and authorization made with M
 
 ## frontend ##
 ------
-## dashboard ##
+### dashboard ###
 <img src="dashboard.png" alt="dashboard" width="500"/>
 
 ------
-## login ##
+### login ###
 <img src="login.png" alt="dashboard" width="500"/>
 
 ------
-## register ##
+### register ###
 <img src="register.png" alt="dashboard" width="500"/>
 
 ------
