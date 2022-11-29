@@ -10,21 +10,16 @@ A simple CRUD application with user authentication and authorization made with M
 * Bullet list item 2
 
 ## frontend ##
-* Bullet list
-     * Nested bullet
-     * Sub-nested bullet etc
-* Bullet list item 2
-
 ------
-#### dashboard ####
+## dashboard ##
 ![dashbaord](dashboard.png)
 
 ------
-#### login ####
+## login ##
 ![login](login.png)
 
 ------
-#### register ####
+## register ##
 ![register](register.png)
 
 ------
