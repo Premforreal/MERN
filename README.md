@@ -7,14 +7,22 @@ A simple CRUD application with user authentication and authorization made with M
 * The backend is developed using nodejs, Express and Mongodb as database.
 * You can access the backend RESTapi using this [link](https://mernbackend-mao3.onrender.com "backend")
 * The api endpoints are
+* ###user###
 
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+    Purpose    |   Method      |  endpoint
+-------------- | ------------- | -------------
+Login          |    POST       | https://mernbackend-mao3.onrender.com/api/users/login
+Register       |    POST       | https://mernbackend-mao3.onrender.com/api/users/
+get user data  |    GET        | https://mernbackend-mao3.onrender.com/api/users/me
 
-* #### USER ####
-    * POST : https://mernbackend-mao3.onrender.com/api/users/login
+* ###goals###
+
+    Purpose    |   Method      |  endpoint
+-------------- | ------------- | -------------
+Login          |    POST       | https://mernbackend-mao3.onrender.com/api/users/login
+Register       |    POST       | https://mernbackend-mao3.onrender.com/api/users/
+get user data  |    GET        | https://mernbackend-mao3.onrender.com/api/users/me
+
 
 ## frontend ##
 * The frontend is developed using react.
