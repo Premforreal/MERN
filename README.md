@@ -9,8 +9,6 @@ A simple CRUD application with user authentication and authorization made with M
      * Sub-nested bullet etc
 * Bullet list item 2
 
-------
-
 ## frontend ##
 * Bullet list
      * Nested bullet
