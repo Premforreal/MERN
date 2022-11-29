@@ -10,7 +10,7 @@ A simple CRUD application with user authentication and authorization made with M
 * ###user###
 
     Purpose    |   Method      |  endpoint
--------------- | ------------- | -------------
+-------------- | ------------- | -----------------------------------------------------
 Login          |    POST       | https://mernbackend-mao3.onrender.com/api/users/login
 Register       |    POST       | https://mernbackend-mao3.onrender.com/api/users/
 get user data  |    GET        | https://mernbackend-mao3.onrender.com/api/users/me
