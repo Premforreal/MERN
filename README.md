@@ -1,14 +1,10 @@
 # mern-Goals
 A simple CRUD application with user authentication and authorization made with MERN stack.
 
-------
-## Features ##
-* Basic Authentication (Register/Login with hashed password)
-
-------
-
 ## backend ##
 * The backend is developed using nodejs, Express and Mongodb as database.
+* Basic Authentication (Register/Login with hashed password using bcryptjs).
+* JWT Tokens : make requests with a token after login with Header "Authorization" with value "Bearer yourToken".
 * You can access the backend RESTapi using this [link](https://mernbackend-mao3.onrender.com "backend")
 * The api endpoints for **user login**:
 
