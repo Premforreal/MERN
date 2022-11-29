@@ -18,7 +18,7 @@ Register      | POST          | https://mernbackend-mao3.onrender.com/api/users/
 Purpose       | Method        | End point |
 ------------- | ------------- | ------------- |
 Create goals  | GET           | https://mernbackend-mao3.onrender.com/api/goals    |
-Update goal   | POST          | https://mernbackend-mao3.onrender.com/api/goals/id |
+Update goal   | PUT           | https://mernbackend-mao3.onrender.com/api/goals/id |
 Delete goal   | POST          | https://mernbackend-mao3.onrender.com/api/goals/id |
 
 ## frontend ##
