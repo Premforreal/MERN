@@ -17,10 +17,10 @@ get user data  |    GET        | https://mernbackend-mao3.onrender.com/api/users
 
 * ###goals###
 
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+First Header  | Second Header | First Header  | Second Header
+------------- | ------------- | ------------- | -------------
+Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+Content Cell  | Content Cell  | Content Cell  | Content Cell  |
 
 ## frontend ##
 * The frontend is developed using react.
