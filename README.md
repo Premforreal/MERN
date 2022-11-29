@@ -24,6 +24,7 @@ Delete goal   | POST          | https://mernbackend-mao3.onrender.com/api/goals/
 ## frontend ##
 * The frontend is developed using react.
 * It is made into single page application using react router dom.
+* The routes are protected until the user is authenticated.
 * Click [here](https://premforreal.github.io/mern-Goals/ "backend") to visit the website.
 ------
 ### dashboard ###
