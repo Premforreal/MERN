@@ -1,6 +1,11 @@
 # mern-Goals
 A simple CRUD application with user authentication and authorization made with MERN stack.
 
+<details>
+    <summary>Title 1</summary>
+    <p>Content 1 Content 1 Content 1 Content 1 Content 1</p>
+</details>
+
 ## backend ##
 * The backend is developed using nodejs, Express and Mongodb as database.
 * Basic Authentication (Register/Login with hashed password using bcryptjs).
