@@ -10,6 +10,7 @@ A simple CRUD application with user authentication and authorization made with M
 ## frontend ##
 * The frontend is developed using react.
 * It is made into single page application using react router dom.
+* Click [here](https://premforreal.github.io/mern-Goals/ "backend") to visit the website.
 ------
 ### dashboard ###
 <img src="dashboard.png" alt="dashboard" width="500"/>
