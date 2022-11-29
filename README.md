@@ -16,10 +16,11 @@ get user data |    GET        | https://mernbackend-mao3.onrender.com/api/users/
 
 * The api endpoints for GOALS
 
-First Header  | Second Header | First Header  | Second Header |
+First Header  | Second Header | Method        | End point |
 ------------- | ------------- | ------------- | ------------- |
 Content Cell  | Content Cell  | Content Cell  | https://mernbackend-mao3.onrender.com/api/users/me |
-Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+Content Cell  | Content Cell  | Content Cell  | https://mernbackend-mao3.onrender.com/api/users/login  |
+Content Cell  | Content Cell  | Content Cell  | https://mernbackend-mao3.onrender.com/api/users/  |
 
 ## frontend ##
 * The frontend is developed using react.
