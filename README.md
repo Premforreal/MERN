@@ -15,13 +15,6 @@ Login          |    POST       | https://mernbackend-mao3.onrender.com/api/users
 Register       |    POST       | https://mernbackend-mao3.onrender.com/api/users/
 get user data  |    GET        | https://mernbackend-mao3.onrender.com/api/users/me
 
-* ###goals###
-
-    Purpose    |   Method      |  endpoint
--------------- | ------------- | -------------
-Login          |    POST       | https://mernbackend-mao3.onrender.com/api/users/login
-Register       |    POST       | https://mernbackend-mao3.onrender.com/api/users/
-get user data  |    GET        | https://mernbackend-mao3.onrender.com/api/users/me
 
 
 ## frontend ##
