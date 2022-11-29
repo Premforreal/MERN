@@ -13,6 +13,13 @@ Purpose       | Method        | End point |
 credentials   | GET           | https://mernbackend-mao3.onrender.com/api/users/me |
 Login         | POST          | https://mernbackend-mao3.onrender.com/api/users/login  |
 Register      | POST          | https://mernbackend-mao3.onrender.com/api/users/  |
+* The api endpoints for user login
+
+Purpose       | Method        | End point |
+------------- | ------------- | ------------- |
+credentials   | GET           | https://mernbackend-mao3.onrender.com/api/users/me |
+Login         | POST          | https://mernbackend-mao3.onrender.com/api/users/login  |
+Register      | POST          | https://mernbackend-mao3.onrender.com/api/users/  |
 
 ## frontend ##
 * The frontend is developed using react.
