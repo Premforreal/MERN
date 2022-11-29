@@ -2,6 +2,10 @@
 A simple CRUD application with user authentication and authorization made with MERN stack.
 
 ------
+## Features ##
+* Basic Authentication (Register/Login with hashed password)
+
+------
 
 ## backend ##
 * The backend is developed using nodejs, Express and Mongodb as database.
