@@ -8,18 +8,18 @@ A simple CRUD application with user authentication and authorization made with M
 * You can access the backend RESTapi using this [link](https://mernbackend-mao3.onrender.com "backend")
 * The api endpoints for **user login**:
 
-Purpose       | Method        | End point |
+Description   | HTTP Method   | URL |
 ------------- | ------------- | ------------- |
-credentials   | GET           | https://mernbackend-mao3.onrender.com/api/users/me |
-Login         | POST          | https://mernbackend-mao3.onrender.com/api/users/login  |
-Register      | POST          | https://mernbackend-mao3.onrender.com/api/users/  |
+user information | GET        | /api/users/me |
+Login         | POST          | /api/users/login  |
+Register      | POST          | /api/users/   |
 * The api endpoints for **user data**:
 
-Purpose       | Method        | End point |
+Description       | HTTP Method  | URL    |
 ------------- | ------------- | ------------- |
-Create goals  | GET           | https://mernbackend-mao3.onrender.com/api/goals    |
-Update goal   | PUT           | https://mernbackend-mao3.onrender.com/api/goals/id |
-Delete goal   | POST          | https://mernbackend-mao3.onrender.com/api/goals/id |
+Create goals  | GET           |/api/goals     |
+Update goal   | PUT           | /api/goals/id |
+Delete goal   | POST          | /api/goals/id |
 
 ## frontend ##
 * The frontend is developed using react.
