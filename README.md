@@ -9,12 +9,12 @@ A simple CRUD application with user authentication and authorization made with M
 **METHODS**
 Description      | HTTP Method   | URL              |Payload      |Response     |
 -------------    | ------------- | -------------    |-------------|-------------|
-user information | GET           | /api/users/me    | |           |
-Login            | POST          | /api/users/login | |   |
-Register         | POST          | /api/users/      | |   |
-Create goals     | GET           |/api/goals        | |   |
-Update goal      | PUT           | /api/goals/id    | |   |
-Delete goal      | POST          | /api/goals/id    | |   |
+user information | GET           | /api/users/me    |             |             |
+Login            | POST          | /api/users/login |             |             |
+Register         | POST          | /api/users/      |             |             |
+Create goals     | GET           |/api/goals        |             |             |
+Update goal      | PUT           | /api/goals/id    |             |             |
+Delete goal      | POST          | /api/goals/id    |             |             |
 
 ## frontend ##
 * The frontend is developed using react.
