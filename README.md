@@ -6,13 +6,14 @@ A simple CRUD application with user authentication and authorization made with M
 * Basic Authentication (Register/Login with hashed password using bcryptjs).
 * JWT Tokens : make requests with a token after login with Header "Authorization" with value "Bearer yourToken".
 * You can access the backend RESTapi using this [link](https://mernbackend-mao3.onrender.com "backend")
+
 **METHODS**
-Description      | HTTP Method   | URL              |Payload      |Response   |
+Description      | HTTP Method   |      URL         |   Payload   |  Response |
 -------------    | ------------- | -------------    |------------ |-----------|
 user information | GET           | /api/users/me    |    P1       |  R1       |
 Login            | POST          | /api/users/login |    P2       |  R2       |
 Register         | POST          | /api/users/      |    P3       |  R3       |
-Create goals     | GET           |/api/goals        |    P4       |  R4       |
+Create goals     | GET           | /api/goals       |    P4       |  R4       |
 Update goal      | PUT           | /api/goals/id    |    P5       |  R5       |
 Delete goal      | POST          | /api/goals/id    |    P6       |  R6       |
 
