@@ -7,14 +7,14 @@ A simple CRUD application with user authentication and authorization made with M
 * JWT Tokens : make requests with a token after login with Header "Authorization" with value "Bearer yourToken".
 * You can access the backend RESTapi using this [link](https://mernbackend-mao3.onrender.com "backend")
 **METHODS**
-Description      | HTTP Method   | URL               |Payload      |Response     |
--------------    | ------------- | -------------     |-------------|-------------|
-user information | GET           | /api/users/me     |||
-Login            | POST          | /api/users/login  |||
-Register         | POST          | /api/users/       |||
-Create goals     | GET           |/api/goals         |||
-Update goal      | PUT           | /api/goals/id     |||
-Delete goal      | POST          | /api/goals/id     |||
+Description      | HTTP Method   | URL              |Payload      |Response     |
+-------------    | ------------- | -------------    |-------------|-------------|
+user information | GET           | /api/users/me    | |           |
+Login            | POST          | /api/users/login | |   |
+Register         | POST          | /api/users/      | |   |
+Create goals     | GET           |/api/goals        | |   |
+Update goal      | PUT           | /api/goals/id    | |   |
+Delete goal      | POST          | /api/goals/id    | |   |
 
 ## frontend ##
 * The frontend is developed using react.
