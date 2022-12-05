@@ -17,6 +17,12 @@ Create goals     | GET           | /api/goals       |    P4       |  R4       |
 Update goal      | PUT           | /api/goals/id    |    P5       |  R5       |
 Delete goal      | POST          | /api/goals/id    |    P6       |  R6       |
 
+```
+javascript
+P1 - {"Authorization" : Bearer token <The user token which he recieves on successful login>}
+P2 - {email: <email of user (unique)>,password: <password of user>}
+```  
+
 ## frontend ##
 * The frontend is developed using react.
 * It is made into single page application using react router dom.
