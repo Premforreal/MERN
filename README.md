@@ -16,7 +16,7 @@ Register         | POST          | /api/users/      |    P3       |  "          
 get goals of user| GET           | /api/goals       |    P4       |[user goals]           |
 Create goals     | GET           | /api/goals       |    P5       |P5 with id             |
 Update goal      | PUT           | /api/goals/id    |    P6       |     "                 |
-Delete goal      | POST          | /api/goals/id    |    NA       |  id                   |
+Delete goal      | DELETE        | /api/goals/id    |    NA       |  id                   |
 
 ```javascript
 P1 - {"Authorization" : Bearer token <The user token which he recieves on successful login>}
